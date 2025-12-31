@@ -10,6 +10,6 @@ if [ ! -d "$VENV_DIR" ]; then
 fi
 
 "$VENV_DIR/bin/pip" install --upgrade pip >/dev/null
-"$VENV_DIR/bin/pip" install "$ROOT_DIR"
+"$VENV_DIR/bin/pip" install -r "$ROOT_DIR/requirements.txt"
 
 exec "$VENV_DIR/bin/python" "$ROOT_DIR/run_app.py"
