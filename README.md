@@ -16,6 +16,12 @@ pip install .
 streamlit run app/main.py
 ```
 
+### Run with automatic dependency setup
+
+```bash
+./scripts/run_app.sh
+```
+
 ### Run without a Streamlit command
 
 ```bash
