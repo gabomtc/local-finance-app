@@ -1,0 +1,26 @@
+[project]
+name = "finance-tracker"
+version = "0.1.0"
+description = "Local personal finance tracker using Streamlit and SQLite."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "streamlit>=1.35.0",
+    "pandas>=2.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.5.0",
+]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "B", "UP", "N"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app", "core", "db"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
