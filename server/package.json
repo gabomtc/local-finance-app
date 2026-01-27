@@ -1,0 +1,37 @@
+{
+  "name": "local-finance-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "lint": "eslint . --ext .ts",
+    "test": "vitest run",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:generate": "prisma generate",
+    "prisma:seed": "prisma db seed"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "zod": "^3.23.8",
+    "@prisma/client": "^5.19.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.5.4",
+    "@types/supertest": "^2.0.16",
+    "eslint": "^9.8.0",
+    "supertest": "^6.3.4",
+    "tsx": "^4.17.0",
+    "typescript": "^5.5.4",
+    "prisma": "^5.19.1",
+    "vitest": "^2.0.5"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  }
+}

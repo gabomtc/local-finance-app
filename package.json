@@ -1,0 +1,14 @@
+{
+  "name": "local-finance-app",
+  "private": true,
+  "workspaces": ["client", "server"],
+  "scripts": {
+    "dev": "concurrently -k \"npm:dev --workspace server\" \"npm:dev --workspace client\"",
+    "server:test": "npm run test --workspace server",
+    "server:prisma:migrate": "npm run prisma:migrate --workspace server",
+    "server:prisma:seed": "npm run prisma:seed --workspace server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}
