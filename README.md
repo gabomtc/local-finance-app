@@ -1,45 +1,74 @@
-# Local Finance Tracker
+# Local Finance Tracker (TypeScript)
 
-A local personal finance tracker built with Python, Streamlit, and SQLite. Track expenses and income, view monthly reports, and export your data to CSV.
+A full-stack personal finance tracker built with React + Vite, Express, and SQLite (Prisma). Capture inflows and expenses, review analytics, and generate AI images for expense items.
+
+## Features
+
+- Record EXPENSE and INFLOW transactions with date, category, description, and amount.
+- Expense-only item labels and AI-generated images.
+- Dashboard analytics (totals, net, current balance, category breakdown).
+- Filterable transaction list with image thumbnails.
+- SQLite persistence via Prisma.
+
+## Repo structure
+
+```
+/client   # React + Vite frontend
+/server   # Express + Prisma backend
+```
 
 ## Setup
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install .
-```
-
-## Run
+### 1) Install dependencies
 
 ```bash
-streamlit run app/main.py
+npm install
 ```
 
-### Run with automatic dependency setup
+### 2) Configure environment
+
+Create `/server/.env` with:
+
+```
+DATABASE_URL="file:./dev.db"
+OPENAI_API_KEY="your-key-here"
+```
+
+### 3) Migrate the database
 
 ```bash
-./scripts/run_app.sh
+npm run server:prisma:migrate
 ```
 
-### Run without a Streamlit command
+### 4) Seed sample data (optional)
 
 ```bash
-python run_app.py
+npm run server:prisma:seed
 ```
 
-On Linux Mint you can also make `run_app.py` executable and double-click it in your file manager.
+## Run (single command)
+
+```bash
+npm run dev
+```
+
+- Client: http://localhost:5173
+- Server: http://localhost:3001
+
+## API Endpoints
+
+- `POST /api/transactions`
+- `GET /api/transactions?type=&category=&from=&to=&limit=&offset=`
+- `GET /api/summary?from=&to=`
+- `POST /api/transactions/:id/generate-image`
 
 ## Tests
 
 ```bash
-pytest
+npm run server:test
 ```
 
-## Export CSV
+## Notes
 
-```bash
-python scripts/export_csv.py
-```
-
-Exports are written to the `exports/` directory with timestamped filenames.
+- Image generation uses the OpenAI Images API. The provider enforces a photorealistic, neutral background prompt with no logos or copyrighted characters.
+- The image generation endpoint is rate-limited to 5 requests per minute per IP.
